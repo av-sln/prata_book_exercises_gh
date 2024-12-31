@@ -13,4 +13,4 @@
 главы, помогут читателям сосредоточиться на самой критически важной информации и  
 систематизировать наиболее сложные концепции.  
 
-[book](https://github.com/av-sln/prata_book_exercises_gh/blob/main/prata.webp)  
+[book](https://raw.githubusercontent.com/av-sln/prata_book_exercises_gh/refs/heads/main/prata.webp)  
