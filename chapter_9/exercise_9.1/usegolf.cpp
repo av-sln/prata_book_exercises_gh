@@ -21,8 +21,8 @@ int main()
     golf players[ArSize];
     for (int i = 0; i < ArSize; i++) {
         std::cout << "Player #" << i + 1 << std::endl;
-        int check = setgolf(players[i]);
-        if (check == 0)
+        int flag = setgolf(players[i]);
+        if (flag == 0)
             break;
         else 
             counter += 1;
