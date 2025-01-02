@@ -6,13 +6,14 @@
 namespace SALES
 {
   const int QUARTERS = 4;
+  const int SIZE = 2;
 
   struct Sales
   {
     double sales[QUARTERS];
-    double average;
-    double max;
-    double min;
+    double average_;
+    double max_;
+    double min_;
   };
 
   // Копирует меньшее значение из 4 или n элементов из массива ar в член
