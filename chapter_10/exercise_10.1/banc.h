@@ -1,7 +1,7 @@
-// bancacc.h -- 
+// banc.h -- 
 
-#ifndef BANCACC_H_
-#define BANCACC_H_
+#ifndef BANC_H_
+#define BANC_H_
 
 #include <string>
 
