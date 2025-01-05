@@ -3,11 +3,10 @@
 #ifndef GOLF_H_
 #define GOLF_H_
 
-const int LEN = 40;
-
 class Golf
 {
 private:
+  static const int LEN = 40;
   char fullname_[LEN];
   int handicap_;
 
