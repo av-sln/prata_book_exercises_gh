@@ -22,11 +22,9 @@ void Move::showmove() const
 }
 
 // Добавление данных одного объекта к другому
-Move Move::add(const Move& m) 
+Move Move::add(const Move& m) const
 {
-  x += m.x;
-  y += m.y;
-  return *this;
+  return Move(x + m.x, y + m.y);
 }
 
 // Сброс значений

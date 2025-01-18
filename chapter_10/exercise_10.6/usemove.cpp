@@ -15,9 +15,8 @@ int main()
 
   std::cout << std::endl;
   std::cout << "Using the add method:" << std::endl;
-  one_obj.add(two_obj);
-  one_obj.showmove();
-  two_obj.showmove();
+  Move three_obj = one_obj.add(two_obj);
+  three_obj.showmove();
 
   std::cout << std::endl;
   std::cout << "Using the reset method:" << std::endl;
