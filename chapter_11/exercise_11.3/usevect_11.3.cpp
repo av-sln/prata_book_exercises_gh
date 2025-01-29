@@ -58,6 +58,8 @@ int main()
   std::cout << "Среднее кооличество шагов из " << N << " попыток: "
             << averageSteps(p_ar_steps, N) << " шагов.\n";
 
+  delete [] p_ar_steps;
+
   return 0;
 }
 
