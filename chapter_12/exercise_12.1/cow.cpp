@@ -9,7 +9,7 @@ Cow::Cow()
 {
   std::strcpy(name_, "no name");
   hobby_ = new char[1];
-  hobby_[0] = '\0';
+  hobby_ = nullptr;
   weight_ = 0.0;
 }
 
