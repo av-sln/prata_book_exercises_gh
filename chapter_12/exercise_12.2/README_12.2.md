@@ -57,7 +57,6 @@
   }
   ```  
   Вывод программы должен выглядеть приблизительно так:  
-  ```  
     please enter your name: **Fretta Farbo**  
     My name is Fretta Farbo.  
     The string  
@@ -67,6 +66,5 @@
     Try again!  
     **BLUE**  
     That's right!  
-    Bye      
-  ```  
-  
+    Bye  
+    
