@@ -17,11 +17,11 @@ public:
   // Деструктор
   ~Customer();
   // Установка клиента
-  void cset(long when);
+  void cSet(long when);
   // Время прибытия клиента
-  long cwhen() const;
+  long cWhen() const;
   // Время обслуживания клиента
-  int cptime() const; 
+  int cPtime() const; 
 };
 
 typedef Customer Item;
@@ -33,18 +33,18 @@ class Queue
 private:
   struct Node
   {
-    Item item;    // элемент очереди 
-    Node *next;   // адрес следующего элемента
+    Item data;    // элемент очереди 
+    Node* next;   // адрес следующего элемента
   };
   enum {QSZ = 10};    // размер очереди по умолчанию
   int q_items_;       // текущее количество элементов в очереди
   int q_size_;        // размер очереди
-  Node *begin_;       // указатель на начало очереди
-  Node *finish_;      // указатель на конец очереди
+  Node* front_;       // указатель на начало очереди
+  Node* rear_;      // указатель на конец очереди
   
   // Упреждающие объявления для предотвращения открытого копирования
-  Queue(const Queue &q) : q_size_(0) {}
-  Queue & operator=(const Queue &q) { return *this; }
+  Queue(const Queue& q) : q_size_(0) {}
+  Queue & operator=(const Queue& q) { return *this; }
 
 public:
 // Конструктор
@@ -52,13 +52,13 @@ Queue(int qsz = QSZ);
 // Деструктор
 ~Queue();
 // Является ли очередь пустой
-bool isempty() const;
+bool isEmpty() const;
 // Является ли очередь заполненной
-bool isfull() const;
+bool isFull() const;
 // Добавление элемента в очередь
-bool additem(const Item &itm);
+bool addItem(const Item& itm);
 // Удаление элемента из очереди
-bool delitem(Item &itm);
+bool delItem(Item& itm);
 int items() const;
 };
 
