@@ -81,7 +81,7 @@ bool Queue::addItem(const Item& itm)
   newNode->data = itm;      // присваиваем значение новому элементу очереди
   newNode->next = nullptr;  // устанавливаем нулевой указатель
   q_items_++;               // увеличиваем счётчик элементов
-  if (isEmpty()) 
+  if (front_ == nullptr) 
     front_ = newNode;       // если очередь пуста, то добавляем элемент в начало
   else
     rear_->next = newNode;  // заносим ссылку на новый узел
@@ -99,7 +99,7 @@ bool Queue::delItem(Item& itm)
   Node* tmp = front_; // сохраняем расположение начального узла
   front_ = front_->next;  // заносим указатель на следующий узел
   delete tmp;             // удаляем старый начальный узел
-  if (isEmpty())
+  if (q_items_ == 0)
     rear_ = nullptr;      // если список уже пуст обнуляем все указатели
   return true;  
 }
