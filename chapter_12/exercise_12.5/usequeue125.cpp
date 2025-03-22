@@ -13,10 +13,12 @@ int main()
 {
   // Подготовка
   std::srand(std::time(0));       // случайная инициализация rand
+  std::cout << std::endl;
   std::cout << "Исследование: Bank of Heather банкомат\n";
   std::cout << "Введите максимальный размер очереди: ";
   int qs;
   std::cin >> qs;
+
   // Создаём очередь
   Queue line(qs);
   std::cout << "Введите количество часов эмуляции: ";
@@ -24,81 +26,77 @@ int main()
   std::cin >> hours;
 
   // Используемые переменные
-  long turnaways = 0;       // не допущены в полную очередь
-  long customers = 0;       // присоединены к очереди
-  long served = 0;          // обслужены во время эмуляции
-  long sum_line = 0;        // общая длина очереди
-  int wait_time = 0;        // время до освобождения банкомата
-  long line_wait = 0;       // общее время в очереди
-  double average_waiting_time = 0;  // среднее время ожидания
-  double min_per_cust = 0;  // среднее время между появлениями клиентов
+  int served {0};                  // обслужены во время эмуляции
+  int wait_time {0};                // время до освобождения банкомата 
+  long line_wait {0};               // общее время в очереди
+  double average_waiting_time {0};  // среднее время ожидания
+  double min_per_cust {0};          // среднее время между появлениями клиентов
   
-
   // Эмуляция запускает один цикл в минуту
   long cyclelimit = MinPerHour * hours;   // количество циклов
   double perhour = 1;
+  Item new_customer;
 
   // Запускаем бесконечный цикл 
   // Остановка по условию
   for (;;) {
+    line.clear();
     min_per_cust = MinPerHour / perhour;
-    Item new_customer;      // новый клиент
-
-    turnaways = 0;       
-    customers = 0;       
+    average_waiting_time = 0;
+    wait_time = 0;       
     served = 0;          
-    sum_line = 0;        
-    wait_time = 0;        
-    line_wait = 0;       
-
+    line_wait = 0; 
+    
     // Запуск эмуляции
-    for (int cycle = 0; cycle < cyclelimit; cycle++) {
-      if (newCustomer(min_per_cust)) {    // есть ли подошедший клиент
-        // Если очередь полная клиент не допускается
-        if (line.isFull())  
-          turnaways++;
-        // Если в очереди есть место клиент помещается в конец
-        else {
-          customers++;
-          new_customer.cSet(cycle);       // cycle = время прибытия
-          line.addItem(new_customer);     // добавление нового клиента в очередь
+    for (long cycle = 0; cycle < cyclelimit; cycle++) {
+      if (newCustomer(min_per_cust)) {      // есть ли подошедший клиент
+        if (!line.isfull()) {
+          new_customer.set(cycle);           // cycle - время прибытия
+          line.additem(new_customer);         // добавляем нового клиента
         }
       }
+    
       // Если банкомат свободен и очередь не пустая
-      if (wait_time <= 0 && !line.isEmpty()) {
-        line.delItem(new_customer);           // обслуживание следующего клиента
-        wait_time = new_customer.cPtime();    // время обслуживания 
-        line_wait += cycle - new_customer.cWhen();
+      if (wait_time <= 0 && !line.isempty()) {
+        line.delitem(new_customer);           // обслуживание следующего клиента
+        wait_time = new_customer.ptime();    // время обслуживания 
+        line_wait += cycle - new_customer.when();
         served++;
       }
       if (wait_time > 0)
         wait_time--;
-      sum_line += line.items();
     }
 
     // Вычисляем среднее время ожидания
-    average_waiting_time = double(line_wait) / double(served);
+    average_waiting_time = (double)line_wait / served;
     if (average_waiting_time < 1) {
+      std::cout << "#" << perhour << ": " << average_waiting_time
+                << std::endl;
       perhour++;
+
+      // res = average_waiting_time;
       continue;
     }
-    else if (average_waiting_time == 1) 
+    else if (average_waiting_time == 1) {
+      std::cout << "#" << perhour << ": " << average_waiting_time
+                << std::endl;
+       // res = average_waiting_time; 
       break;
+    }
     else {
+      std::cout << "#" << perhour << ": " << average_waiting_time
+                << std::endl;
       perhour--;
       break;
-    }      
+    } 
   }
 
   // Вывод результатов
   std::cout << std::endl;
   std::cout << "Результаты исследования:\n";
-  if (customers > 0) {
-    std::cout << "Количество клиентов за час ожидающих одну минуту или менее:\n";
-    std::cout << perhour << std::endl;
-  }
-  else
-    std::cout << "Клиентов нет!\n";
+  std::cout << "Количество клиентов за час ожидающих одну минуту или менее:\n";
+  std::cout << perhour << std::endl;
+  // std::cout << "Среднее время ожидания клиента: " << res << " минут.\n";
   std::cout << "Done!\n";
 
   return 0;

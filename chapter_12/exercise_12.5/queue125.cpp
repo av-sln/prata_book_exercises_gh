@@ -7,7 +7,7 @@
 // Конструктор
 Customer::Customer()
 {
-  c_arrival_ = c_ptime_ = 0;
+  arrival_ = process_time_ = 0;
 }
 
 // Деструктор
@@ -15,29 +15,29 @@ Customer::~Customer()
 {}
 
 // Время появления клиента
-long Customer::cWhen() const
+long Customer::when() const
 {
-  return c_arrival_;
+  return arrival_;
 }
 
 // Время обслуживания клиента
-int Customer::cPtime() const
+int Customer::ptime() const
 {
-  return c_ptime_;
+  return process_time_;
 }
 
 // Установка клиента
-void Customer::cSet(long when)
+void Customer::set(long when)
 {
-  c_arrival_ = when;
-  c_ptime_ = std::rand() % 3 + 1;
+  arrival_ = when;
+  process_time_ = std::rand() % 3 + 1;
 }
 
 // Класс Queue
 // Конструктор
-Queue::Queue(int qsz) : q_size_(qsz)
+Queue::Queue(int qsz) : size_(qsz)
 {
-  q_items_ = 0;
+  items_ = 0;
   front_ = rear_ = nullptr;
 }
 
@@ -54,33 +54,33 @@ Queue::~Queue()
 }
 
 // Является ли очередь пустой
-bool Queue::isEmpty() const
+bool Queue::isempty() const
 {
-  return q_items_ == 0;
+  return items_ == 0;
 }
 
 // Является ли очередь заполненной
-bool Queue::isFull() const
+bool Queue::isfull() const
 {
-  return q_items_ == q_size_;
+  return items_ == size_;
 }
 
 // Текущее количество элементов в очереди
 int Queue::items() const
 {
-  return q_items_;
+  return items_;
 }
 
 // Добавление элемента в очередь
-bool Queue::addItem(const Item& itm)
+bool Queue::additem(const Item& itm)
 {
-  if (isFull())
+  if (isfull())
     return false;
   Node* newNode;            // создаём новый узел
   newNode = new Node;       // выделяем память для нового узла
   newNode->data = itm;      // присваиваем значение новому элементу очереди
   newNode->next = nullptr;  // устанавливаем нулевой указатель
-  q_items_++;               // увеличиваем счётчик элементов
+  items_++;               // увеличиваем счётчик элементов
   if (front_ == nullptr) 
     front_ = newNode;       // если очередь пуста, то добавляем элемент в начало
   else
@@ -90,16 +90,30 @@ bool Queue::addItem(const Item& itm)
 }
 
 // Удаление элемента из очереди
-bool Queue::delItem(Item& itm)
+bool Queue::delitem(Item& itm)
 {
-  if (isEmpty())
+  if (isempty())
     return false;
   itm = front_->data; // передаём в метод первый элемент очереди
-  q_items_--;         // уменьшаем счётчик элементов на единицу
+  items_--;         // уменьшаем счётчик элементов на единицу
   Node* tmp = front_; // сохраняем расположение начального узла
   front_ = front_->next;  // заносим указатель на следующий узел
   delete tmp;             // удаляем старый начальный узел
-  if (q_items_ == 0)
+  if (items_ == 0)
     rear_ = nullptr;      // если список уже пуст обнуляем все указатели
   return true;  
+}
+
+// Очистить очередь
+void Queue::clear()
+{
+  Node* tmp;                  // создаём временный узел
+  // Цикл выполняется пока очередь не пуста
+  while (front_ != nullptr) {
+    tmp = front_;             // сохраняем адрес первого элемента
+    front_ = front_->next;    // следующий элемент становится первым
+    delete tmp;               // удаление предыдущего первого элемента
+  }
+  rear_ = nullptr;
+  items_ = 0;
 }
