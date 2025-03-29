@@ -32,20 +32,6 @@ void Cd::Report() const
   std::cout << "Play Time    : " << playtime << std::endl;
 }
 
-// Перегрузка операции присваивания
-Cd& Cd::operator=(const Cd& rcd)
-{
-  if (this == &rcd)
-    return *this;
-  else {
-    std::strcpy(performers, rcd.performers);
-    std::strcpy(label, rcd.label);
-    selections = rcd.selections;
-    playtime = rcd.playtime;
-    return *this;
-  }
-}
-
 // Методы производного класса Classic
 // Конструктор по умолчанию
 Classic::Classic() : Cd()
@@ -64,17 +50,5 @@ Classic::Classic(const char* pf, const char* ps1, const char* ps2, int n,
 void Classic::Report() const
 {
   Cd::Report();
-  std::cout << "Favorite: " << favorite << std::endl;
-}
-
-// Переопределение перегрузки операции присваивания
-Classic& Classic::operator=(const Classic& rcd)
-{
-  if (this == &rcd)
-    return *this;
-  else {
-    Cd::operator=(rcd);
-    std::strcpy(favorite, rcd.favorite);
-    return *this;
-  }
+  std::cout << "Favorite: " << favorite << std::endl;  
 }

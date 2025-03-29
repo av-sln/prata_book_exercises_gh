@@ -12,8 +12,8 @@ public:
   Classic(const char* pf, const char* ps1, const char* ps2,
     int n, double x);
   Classic();
+  ~Classic() {}
   virtual void Report() const;
-  virtual Classic& operator=(const Classic& rcd);
 };
 
 #endif

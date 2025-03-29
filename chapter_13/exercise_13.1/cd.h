@@ -14,9 +14,8 @@ private:
 public:
   Cd(const char* ps1, const char* ps2, int n, double x);
   Cd();
-  virtual ~Cd() {};
+  ~Cd() {};
   virtual void Report() const;      // выводит все данные о компакт-диске
-  virtual Cd& operator=(const Cd& rcd);
 };
 
 #endif // cd.h
