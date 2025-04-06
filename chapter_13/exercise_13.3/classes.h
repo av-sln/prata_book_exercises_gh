@@ -19,7 +19,9 @@ public:
   // Деструктор
   virtual ~baseABC() = 0;
   // Перегруженная операция присваивания
-  virtual baseABC& operator=(const baseABC& rs);
+  // Операция присваивания не наследуется
+  // Используется без ключевого слова virtual
+  baseABC& operator=(const baseABC& rs);
   // Вывод всех данных
   virtual void view() const = 0;
 
