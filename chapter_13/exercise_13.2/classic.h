@@ -21,7 +21,7 @@ public:
   // Вывод всех данных о компакт диске
   virtual void Report() const;
   // Перегруженная операция присваивания
-  virtual Classic& operator=(const Classic& rcd);
+  Classic& operator=(const Classic& rcd);
 };
 
 

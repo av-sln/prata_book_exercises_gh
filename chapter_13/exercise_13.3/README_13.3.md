@@ -12,7 +12,7 @@
 class baseDMA {
 private:
   char* label;
-  int rating;
+  int   rating;
 
 public:
   baseDMA(const char* l = "null", int r = 0);

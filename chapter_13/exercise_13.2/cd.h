@@ -23,7 +23,7 @@ public:
   // Вывод всех данных о компакт диске
   virtual void Report() const;
   // Перегруженная операция присваивания
-  virtual Cd& operator=(const Cd& rd);
+  Cd& operator=(const Cd& rd);
 };
 
 #endif

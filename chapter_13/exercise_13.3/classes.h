@@ -9,7 +9,7 @@
 class baseABC {
 private:
   char* label_;
-  int rating_;
+  int   rating_;
 
 public:
   // Конструктор
@@ -17,7 +17,7 @@ public:
   // Конструктор копирования
   baseABC(const baseABC& rs);
   // Деструктор
-  virtual ~baseABC();
+  virtual ~baseABC() = 0;
   // Перегруженная операция присваивания
   virtual baseABC& operator=(const baseABC& rs);
   // Вывод всех данных
