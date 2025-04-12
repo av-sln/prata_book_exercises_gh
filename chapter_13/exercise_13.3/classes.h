@@ -13,15 +13,15 @@ private:
 
 public:
   // Конструктор
-  baseABC(const char* l = "null", int r = 0);
+  baseABC(const char* plb = "none", int rt = 0);
   // Конструктор копирования
-  baseABC(const baseABC& rs);
+  baseABC(const baseABC& rabc);
   // Деструктор
   virtual ~baseABC() = 0;
   // Перегруженная операция присваивания
   // Операция присваивания не наследуется
   // Используется без ключевого слова virtual
-  baseABC& operator=(const baseABC& rs);
+  baseABC& operator=(const baseABC& rabc);
   // Вывод всех данных
   virtual void view() const = 0;
 
@@ -35,10 +35,11 @@ protected:
 // Не добавляет новых членов использует методы baseABC
 // Деструктор не нужен
 // Использует неявный конструктор копирования
-// Используется неявная операция присваивания
+// Использует неявную операцию присваивания
+
 class baseDMA : public baseABC {
 public:
-  baseDMA(const char* l = "null", int r = 0);  
+  baseDMA(const char* plb = "none", int rt = 0);  
   virtual void view() const;
 };
 
@@ -55,9 +56,9 @@ private:
 
 public:
   // Конструктор по умолчанию
-  lacksDMA(const char* c = "blank", const char* l = "null", int r = 0);
+  lacksDMA(const char* pcl = "none", const char* plb = "none", int rt = 0);
   // Конструктор с аргументами
-  lacksDMA(const char* c, const baseABC& rs);
+  lacksDMA(const char* pcl, const baseABC& rabc);
   virtual void view() const;
 };
 
@@ -73,15 +74,15 @@ private:
 
 public:
   // Конструктор по умолчанию
-  hasDMA(const char* st = "none", const char* l = "null", int r = 0);
+  hasDMA(const char* pst = "none", const char* plb = "none", int rt = 0);
   // Конструктор с аргументами
-  hasDMA(const char* st, const baseABC& rs);
+  hasDMA(const char* pst, const baseABC& rabc);
   // Конструктор копирования
-  hasDMA(const hasDMA& rhs);
+  hasDMA(const hasDMA& rdma);
   // Деструктор
   ~hasDMA();
   // Перегруженная операция присваивания
-  hasDMA& operator=(const hasDMA& rhs);
+  hasDMA& operator=(const hasDMA& rdma);
   virtual void view() const;
 };
 
