@@ -36,8 +36,6 @@ Cd::~Cd()
 // Конструктор копирования
 Cd::Cd(const Cd& rd)
 {
-  delete [] performers_;
-  delete [] label_;
   int len_1 = std::strlen(rd.performers_);
   int len_2 = std::strlen(rd.label_);
   performers_ = new char[len_1 + 1];
@@ -94,7 +92,6 @@ Classic::Classic(const char* pf, const char* s1, const char* s2, int n,
 // Конструктор копирования
 Classic::Classic(const Classic& rcd) : Cd(rcd)
 {
-  delete [] favorite_;
   int len = std::strlen(rcd.favorite_);
   favorite_ = new char[len + 1];
   std::strcpy(favorite_, rcd.favorite_);
