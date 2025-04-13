@@ -17,14 +17,14 @@ public:
   Port(const Port& p);
   virtual ~Port() { delete [] brand; }
   Port& operator=(const Port& p);
-  Port& operator+(int b);     // добавляет b к bottles
+  Port& operator+=(int b);     // добавляет b к bottles
   Port& operator-=(int b);    // вычитает b из bottles, если это возможно
   int BottleCount() const { return bottles; }
   virtual void Show() const;
   friend ostream& operator<<(ostream& os, const Port& p);
 };
 ```
-Метод `Show()` выводит информацию в следующем формате:
+Метод `Show()` выводит информацию в следующем формате:  
 `Brand: Gallo`  
 `Kind: tawny`  
 `Bottles: 20`  
