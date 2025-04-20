@@ -1,7 +1,7 @@
 // pe14-2.cpp -- класс Wine c использованием включения
 
 #include <iostream>
-#include "wine.h"
+#include "wine2.h"
 
 int main()
 {
@@ -23,7 +23,7 @@ int main()
   Wine more("Gushing Grape Red", YRS, y, b);
   more.Show();
   std::cout << "Total bottles for " << more.Label()  // использует метод Label()
-            << ": " << more.sum() << std::endl;           // использует метод sum()
+            << ": " << more.Sum() << std::endl;           // использует метод sum()
   std::cout << "Bye!\n";
 
   return 0;
