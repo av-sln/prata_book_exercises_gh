@@ -1,40 +1,84 @@
-// worker.h -- класс Worker
+// worker.h -- классы сотрудников с множественным наследованием
 
 #ifndef WORKER_H_
 #define WORKER_H_
 #include <string>
-#include <iostream>
 
 class Worker {
 private:
-  std::string fullname_;
-  long id_;
+  std::string fullname;
+  long id;
+
+protected:
+  virtual void Data() const;
+  virtual void Get();
+
+public:
+  Worker() : fullname("no one"), id(0L) {}
+  Worker(const std::string& s, long n)
+    : fullname(s), id(n) {}
+  virtual ~Worker() = 0;
+  virtual void Set() = 0;
+  virtual void Show() const = 0;
+};
+
+class Waiter : virtual public Worker {
+private:
+  int panache;
 
 protected:
   void Data() const;
   void Get();
 
 public:
-  Worker() : fullname_("no one"), id_(0L) {}
-  Worker(const std::string& r_str, long n)
-    : fullname_(r_str), id_(n) {}
+  Waiter() : Worker(), panache(0) {}
+  Waiter(const std::string& s, long n, int p = 0)
+    : Worker(s, n), panache(p) {}
+  Waiter(const Worker& wk, int p = 0)
+    : Worker(wk), panache(p) {}
+  void Set();
+  void Show() const;
 };
 
-// Методы класса Worker
-void Worker::Data() const
-{
-  std::cout << "Name: " << fullname_ << std::endl;
-  std::cout << "Employee ID: " << id_ << std::endl;
-}
+class Singer : virtual public Worker {
+protected:
+  enum {other, alto, contalto, soprano, bass, baritone, tenor};
+  enum {Vtypes = 7};
+  void Data() const;
+  void Get();
 
-void Worker::Get()
-{
-  std::cout << "Enter worker's name: ";
-  getline(std::cin, fullname_);
-  std::cout << "Enter worker's ID: ";
-  std::cin >> id_;
-  while (std::cin.get() != '\n')
-    continue;
-}
+private:
+  static char* pv[Vtypes];
+  int voice;
+
+public:
+  Singer() : Worker(), voice(other) {}
+  Singer(const std::string& s, long n, int v = other)
+    : Worker(s, n), voice(v) {}
+  Singer(const Worker& wk, int v = other)
+    : Worker(wk), voice(v) {}
+  void Set();
+  void Show() const;
+};
+
+// Множественное наследование
+class SingingWaiter : public Singer, public Waiter {
+protected:
+  void Data() const;
+  void Get();
+
+public:
+  SingingWaiter() {}
+  SingingWaiter(const std::string& s, long n, int p = 0, int v = other)
+    : Worker(s, n), Waiter(s, n, p), Singer(s, n, v) {}
+  SingingWaiter(const Worker& wk, int p = 0, int v = other)
+    : Worker(wk), Waiter(wk, p), Singer(wk, v) {}
+  SingingWaiter(const Waiter& wt, int v = other)
+    : Worker(wt), Waiter(wt), Singer(wt, v) {}
+  SingingWaiter(const Singer& wt, int p = 0)
+    : Worker(wt), Waiter(wt, p), Singer(wt) {}
+  void Set();
+  void Show() const;
+};
 
 #endif // worker.h
