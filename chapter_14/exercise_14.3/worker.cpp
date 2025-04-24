@@ -34,6 +34,12 @@ void Waiter::Show() const
   Data();
 }
 
+// Защищённые методы
+void Waiter::Data() const
+{
+  std::cout << "Panache rating: " << panache << std::endl;
+}
+
 void Waiter::Get()
 {
   std::cout << "Enter waiter's panache rating: ";
@@ -43,7 +49,7 @@ void Waiter::Get()
 }
 
 // Методы Singer
-char* Singer::pv[Singer::Vtypes] = {
+const char* Singer::pv[Singer::Vtypes] = {
   "other", "alto", "contralto", "soprano",
   "bass", "baritone", "tenor"
 };
@@ -62,6 +68,7 @@ void Singer::Show() const
   Data();
 }
 
+// Защищённые методы
 void Singer::Data() const
 {
   std::cout << "Vocal range: " << pv[voice] << std::endl;

@@ -48,7 +48,7 @@ protected:
   void Get();
 
 private:
-  static char* pv[Vtypes];
+  static const char* pv[Vtypes];
   int voice;
 
 public:
@@ -62,7 +62,7 @@ public:
 };
 
 // Множественное наследование
-class SingingWaiter : public Singer, public Waiter {
+class SingingWaiter : public Waiter, public Singer {
 protected:
   void Data() const;
   void Get();
