@@ -24,15 +24,15 @@ public:
   QueueTP(int qs = Q_SIZE);
   ~QueueTP();
   // Пуста ли очередь
-  bool QueueTP::isempty() const;
+  bool isempty() const;
   // Полна ли очередь
-  bool QueueTP::isfull() const;
+  bool isfull() const;
   // Количество элементов в очереди
-  int QueueTP::queuecount() const;
+  int queuecount() const;
   // Добавление элемента в конец очереди
-  bool QueueTP::enqueue(const Type& item);
+  bool enqueue(const Type& item);
   // Удаление элемента из начала очереди
-  bool QueueTP::dequeue(Type& item);
+  bool dequeue(Type& item);
 };
 
 // Методы класса QueueTP
