@@ -26,12 +26,8 @@ public:
   virtual void set() = 0; 
 };
 
-// Конструктор #1
-Person::Person(const std::string& r_fnm, const std::string& r_lnm)
-{
-  first_name_ = r_fnm;
-  last_name_ = r_lnm;
-}
+// Деструктор
+Person::~Person() {}
 
 // Вывод всех данных
 void Person::Show() const
@@ -51,8 +47,6 @@ void Person::get()
   getline(std::cin, first_name_);
   std::cout << "Enter last name: ";
   getline(std::cin, last_name_);
-  while (std::cin.get() != '\n')
-    continue;
 }
 
 #endif // person.h
