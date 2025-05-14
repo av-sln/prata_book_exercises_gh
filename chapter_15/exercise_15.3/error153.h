@@ -16,14 +16,14 @@ public:
   void show() const;
 };
 
-class bad_gmean : public std::domain_error {
+class bad_gmean : public std::invalid_argument {
 private:
   double arg1;
   double arg2;
 public:
   explicit bad_gmean(const std::string& what_arg, double a = 0.0, 
     double b = 0.0)
-    : std::domain_error(what_arg), arg1(a), arg2(b) {}
+    : std::invalid_argument(what_arg), arg1(a), arg2(b) {}
   void show() const;
 };
 
