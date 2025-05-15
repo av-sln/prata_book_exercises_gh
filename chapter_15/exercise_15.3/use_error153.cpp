@@ -33,8 +33,8 @@ int main()
           std::cout << ex.what() << std::endl;
           break;
       }
-      }
-    }  
+    }
+  }  
   std::cout << "Bye!\n";
 
   return 0;
