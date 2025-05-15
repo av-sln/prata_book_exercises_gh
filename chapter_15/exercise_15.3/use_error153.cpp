@@ -25,20 +25,16 @@ int main()
     }
     catch (std::logic_error& ex) {
       if (typeid(bad_hmean) == typeid(ex)) {
-        bad_hmean& temp = dynamic_cast<bad_hmean&>(ex);
-        temp.show();
-        std::cout << temp.what() << std::endl;
-        std::cout << "Sorry, you don't get to play any more.\n";
-        break;
+          dynamic_cast<bad_hmean&>(ex).show();
+          std::cout << ex.what() << std::endl;;
+          break;
       } else if (typeid(bad_gmean) == typeid(ex)) {
-          bad_gmean& temp = dynamic_cast<bad_gmean&>(ex);
-          temp.show();
-          std::cout << temp.what() << std::endl;
-          std::cout << "Sorry, you don't get to play any more.\n";
+          dynamic_cast<bad_gmean&>(ex).show();
+          std::cout << ex.what() << std::endl;
           break;
       }
-    }
-  }
+      }
+    }  
   std::cout << "Bye!\n";
 
   return 0;

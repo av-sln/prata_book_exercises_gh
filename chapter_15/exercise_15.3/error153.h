@@ -10,8 +10,7 @@ private:
   double arg1;
   double arg2;
 public:
-  explicit bad_hmean(const std::string& what_arg, double a = 0.0, 
-    double b = 0.0)
+  explicit bad_hmean(const std::string& what_arg, double a = 0.0, double b = 0.0)
     : std::invalid_argument(what_arg), arg1(a), arg2(b) {}
   void show() const;
 };
