@@ -10,7 +10,9 @@ private:
   double arg1;
   double arg2;
 public:
-  explicit bad_hmean(const std::string& what_arg, double a = 0.0, double b = 0.0)
+  explicit bad_hmean(double a = 0.0, double b = 0.0,
+    std::string what_arg = 
+    "Error is in hmean(). Invalid argument a = -b.")
     : std::invalid_argument(what_arg), arg1(a), arg2(b) {}
   void show() const;
 };
@@ -20,8 +22,9 @@ private:
   double arg1;
   double arg2;
 public:
-  explicit bad_gmean(const std::string& what_arg, double a = 0.0, 
-    double b = 0.0)
+  explicit bad_gmean(double a = 0.0, double b = 0.0,
+    const std::string what_arg = 
+    "Error is in gmean(). Arguments should be >= 0.")
     : std::invalid_argument(what_arg), arg1(a), arg2(b) {}
   void show() const;
 };
