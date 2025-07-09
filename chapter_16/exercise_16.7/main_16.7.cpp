@@ -2,13 +2,13 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <iterator>
+#include <random>
 
 std::vector<int> Lotto(int a, int b);
 
 int main()
 {
-  std::srand(time(NULL));
   int a, b;
   std::cout << std::endl;
   std::cout << "Enter total numbers: ";
@@ -18,10 +18,10 @@ int main()
   std::vector<int> winners;
   std::cout << std::endl;
   winners = Lotto(a, b);
-  std::cout << "Winners numbers:\n";
-  for (int i = 0; i < b; ++i) 
-    std::cout << winners[i] << ", ";
-  std::cout << "\b\b;\n";
+  std::ostream_iterator<int> output{std::cout, " "};
+  std::cout << "Winners numbers: ";
+  std::ranges::copy(winners, output);
+  std::cout << std::endl;
 
   return 0;
 }
@@ -29,7 +29,6 @@ int main()
 std::vector<int> Lotto(int a, int b)
 {
   std::vector<int> card(a);
-  std::vector<int> win;
   for (int i = 0; i < a; ++i )
     card[i] = i + 1;
 
@@ -39,16 +38,20 @@ std::vector<int> Lotto(int a, int b)
     std::cout << card[i] << ", ";
   std::cout << "\b\b;\n";
 
-  std::random_shuffle(card.begin(), card.end());
-  win.assign(card.begin(), card.begin() + 6);
+  // Инициализируем генератор случайных чисел для
+  // перемешивания элементов вектора card
+  std::default_random_engine randomEngine{std::random_device{}()};
+  // Перемешиваем элементы вектора в случайном порядке
+  std::ranges::shuffle(card, randomEngine);  
+  card.assign(card.begin(), card.begin() + 6);
 
   // Отладочная информация
   std::cout << "Vector win:\n";
   for (int i = 0; i < b; ++i)
-    std::cout << win[i] << ", ";
+    std::cout << card[i] << ", ";
   std::cout << "\b\b;\n";
 
-  std::sort(win.begin(), win.end());
+  std::sort(card.begin(), card.end());
 
-  return win;
+  return card;
 }
