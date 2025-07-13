@@ -4,14 +4,13 @@
 #include <list>
 #include <ctime>
 #include <algorithm>
-#include <cstdlib>
+#include <random>
 
 void setArray(std::vector<int>& rvec, int a);
-void show(const int& rx);
+void show(const int rx);
 
 int main()
 {
-  std::srand(time(NULL));
   // Ввод размерности массивов
   int arSize;
   std::cout << std::endl;
@@ -29,12 +28,8 @@ int main()
   std::copy(begin(vi), end(vi), begin(li));
 
   // Отладочная информация
-  //std::cout << "Vector:\n";
-  //for (auto x : vi) show(x);
-  //std::cout << std::endl;
-  //std::cout << "List:\n";
-  //for (auto x : li) show(x);
-  //std::cout << std::endl;
+  std::for_each(vi0.begin() + 500, vi0.begin() + 510, show);
+  std::cout << "\b\b;\n";
 
   // Сортировка вектора
   clock_t start = clock();
@@ -69,11 +64,14 @@ int main()
 
 void setArray(std::vector<int>& rvec, int a)
 {
-  for (int i = 0; i < a; ++i)
-    rvec[i] = std::rand() % 100; 
+  // Инициализация генератора случайных чисел
+  std::default_random_engine engine{std::random_device{}()};
+  std::uniform_int_distribution randomDie{1, 1000};
+  for (int i{0}; i < a; ++i)
+    rvec[i] = randomDie(engine); 
 }
 
-void show(const int& rx)
+void show(const int rx)
 {
   std::cout << rx << " ";
 }
